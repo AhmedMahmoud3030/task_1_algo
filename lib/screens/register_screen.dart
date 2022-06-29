@@ -17,7 +17,9 @@ class RegisterScreen extends StatelessWidget {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController phoneController = TextEditingController();
+  String? countryCode = '';
 
   @override
   Widget build(BuildContext context) {
@@ -67,187 +69,190 @@ class RegisterScreen extends StatelessWidget {
                   [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 20),
-                          Text(
-                            'Welcome to 7Krave',
-                            style: TextStyle(
-                                fontSize: 16, color: Colors.grey.shade500),
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Register',
-                                style: TextStyle(
-                                    fontSize: 30, color: Colors.black),
-                              ),
-                              CITButton(
-                                btnText: 'Help',
-                                iconData: Icons.question_mark,
-                                onPressed: () {},
-                                textColor: Colors.blueAccent,
-                              )
-                              // ignore: deprecated_member_use
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            'Email',
-                            style: TextStyle(
-                                fontSize: 18, color: Colors.grey.shade700),
-                          ),
-                          const SizedBox(height: 20),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.95,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              border: Border.all(
-                                color: Colors.grey.shade400,
-                                width: 1,
-                              ),
-                            ),
-                            child: CTextFormField(
-                              type: TextInputType.emailAddress,
-                              controller: emailController,
-                              label: 'ahmed.elbeah@gmail.com',
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            'Phone Number',
-                            style: TextStyle(
-                                fontSize: 18, color: Colors.grey.shade700),
-                          ),
-                          const SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.95,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(2),
-                                  border: Border.all(
-                                    color: Colors.grey.shade400,
-                                    width: 1,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    CountryCodePicker(
-                                      showFlag: false,
-                                      initialSelection: 'EG',
-                                      hideSearch: true,
-                                      onChanged: (value) {
-                                        print(value);
-                                      },
-                                    ),
-                                    CTextFormField(
-                                      type: TextInputType.phone,
-                                      label: 'ex.1026198131',
-                                      controller: phoneController,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            'Password',
-                            style: TextStyle(
-                                fontSize: 18, color: Colors.grey.shade700),
-                          ),
-                          const SizedBox(height: 20),
-                          Container(
-                            width: MediaQuery.of(context).size.width * 0.95,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              border: Border.all(
-                                color: Colors.grey.shade400,
-                                width: 1,
-                              ),
-                            ),
-                            child: CTextFormField(
-                              isPassword: cubit.suffixVisibility,
-                              suffix: cubit.suffixVisibility
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                              suffixPressed: () {
-                                cubit.toggleVisibility();
-                              },
-                              controller: passwordController,
-                              label: 'ex.123456',
-                              type: TextInputType.visiblePassword,
-                            ),
-                          ),
-                          const SizedBox(height: 20),
-                          CButton(
-                            onPressed: () {},
-                            btnText: 'Register',
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: Text(
-                              '-Or-',
-                              textAlign: TextAlign.center,
+                      child: Form(
+                        key: formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: 20),
+                            Text(
+                              'Welcome to 7Krave',
                               style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey.shade400,
+                                  fontSize: 16, color: Colors.grey.shade500),
+                            ),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Register',
+                                  style: TextStyle(
+                                      fontSize: 30, color: Colors.black),
+                                ),
+                                CITButton(
+                                  btnText: 'Help',
+                                  iconData: Icons.question_mark,
+                                  onPressed: () {},
+                                  textColor: Colors.blueAccent,
+                                )
+                                // ignore: deprecated_member_use
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Email',
+                              style: TextStyle(
+                                  fontSize: 18, color: Colors.grey.shade700),
+                            ),
+                            const SizedBox(height: 20),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              child: CTextFormField(
+                                validate: (val) {
+                                  if (val!.contains('@') &&
+                                      val.contains('.com')) {
+                                    return null;
+                                  } else {
+                                    return 'Please enter valide email';
+                                  }
+                                },
+                                type: TextInputType.emailAddress,
+                                controller: emailController,
+                                label: 'ahmed.elbeah@gmail.com',
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          CIButton(
-                            onPressed: () {},
-                            txtColor: Colors.blueAccent,
-                            btnText: 'Sign in by Google',
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                ' have any account?',
-                                style: TextStyle(
-                                    fontSize: 16, color: Colors.black),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Phone Number',
+                              style: TextStyle(
+                                  fontSize: 18, color: Colors.grey.shade700),
+                            ),
+                            const SizedBox(height: 20),
+                            CTextFormField(
+                              prefix: CountryCodePicker(
+                                showFlag: false,
+                                initialSelection: 'EG',
+                                hideSearch: true,
+                                onInit: (value) =>
+                                    countryCode = value!.dialCode,
+                                onChanged: (value) =>
+                                    countryCode = value.dialCode,
                               ),
-                              CTButton(
-                                btnText: 'Sign in here',
-                                onPressed: () {
-                                  Navigator.of(context).pushReplacementNamed(
-                                      LoginScreen.routeName);
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              isMergedToAnotherBox: true,
+                              validate: (val) {
+                                if (val!.length >= 10) {
+                                  return null;
+                                } else {
+                                  return 'Please enter valide phone number';
+                                }
+                              },
+                              type: TextInputType.phone,
+                              label: 'ex.1026198131',
+                              controller: phoneController,
+                            ),
+                            const SizedBox(height: 20),
+                            Text(
+                              'Password',
+                              style: TextStyle(
+                                  fontSize: 18, color: Colors.grey.shade700),
+                            ),
+                            const SizedBox(height: 20),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.95,
+                              child: CTextFormField(
+                                validate: (val) {
+                                  if (val!.length <= 5 && val.contains('_')) {
+                                    return null;
+                                  } else {
+                                    return 'Please enter valide Password';
+                                  }
                                 },
-                                textColor: Colors.blueAccent,
-                              )
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'by registering you agree to the  ',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.grey.shade400),
+                                isPassword: cubit.suffixVisibility,
+                                suffix: cubit.suffixVisibility
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                suffixPressed: () {
+                                  cubit.toggleVisibility();
+                                },
+                                controller: passwordController,
+                                label: 'ex.123456',
+                                type: TextInputType.visiblePassword,
                               ),
-                              CTButton(
-                                  btnText: 'terms and conditions',
+                            ),
+                            const SizedBox(height: 20),
+                            CButton(
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  //!do Sign in
+                                }
+                              },
+                              btnText: 'Register',
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: Text(
+                                '-Or-',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.grey.shade400,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            CIButton(
+                              onPressed: () {
+                                if (formKey.currentState!.validate()) {
+                                  //!do Sign in
+                                }
+                              },
+                              txtColor: Colors.blueAccent,
+                              btnText: 'Sign in by Google',
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  ' have any account?',
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                                CTButton(
+                                  btnText: 'Sign in here',
+                                  onPressed: () {
+                                    Navigator.of(context).pushReplacementNamed(
+                                        LoginScreen.routeName);
+                                  },
                                   textColor: Colors.blueAccent,
-                                  onPressed: () {})
-                            ],
-                          ),
-                        ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'by registering you agree to the  ',
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey.shade400),
+                                ),
+                                CTButton(
+                                    btnText: 'terms and conditions',
+                                    textColor: Colors.blueAccent,
+                                    onPressed: () {})
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

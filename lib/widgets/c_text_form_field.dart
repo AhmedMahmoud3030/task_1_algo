@@ -53,6 +53,9 @@ class CTextFormField extends StatelessWidget {
   final IconData? suffix;
   final void Function()? suffixPressed;
   final bool isClickable;
+  final bool isMergedToAnotherBox;
+  final Color borderColor;
+  final Widget? prefix;
 
   const CTextFormField({
     super.key,
@@ -61,7 +64,10 @@ class CTextFormField extends StatelessWidget {
     this.onSubmit,
     this.onChange,
     this.width = 200,
+    this.prefix,
     this.isPassword = false,
+    this.isMergedToAnotherBox = false,
+    this.borderColor = Colors.blueGrey,
     this.isClickable = true,
     this.onTap,
     this.validate,
@@ -74,6 +80,7 @@ class CTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: 70,
       child: TextFormField(
         controller: controller,
         keyboardType: type,
@@ -86,8 +93,10 @@ class CTextFormField extends StatelessWidget {
         cursorColor: const Color(0xFF9FD3D0),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(12),
-          border: InputBorder.none,
+          border: OutlineInputBorder(borderSide: BorderSide()),
+          errorStyle: TextStyle(color: Colors.redAccent),
           hintText: label,
+          prefixIcon: prefix,
           suffixIcon: suffix != null
               ? IconButton(
                   onPressed: suffixPressed,
