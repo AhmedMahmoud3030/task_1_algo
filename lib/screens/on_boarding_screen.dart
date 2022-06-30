@@ -107,10 +107,8 @@ class OnBoardingScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(
-                          bloc.onBoardingPageImages.length,
-                          (index) =>
-                              buildDot(index, bloc.currentPageIndex, context))),
+                      children: List.generate(bloc.onBoardingPageImages.length,
+                          (index) => buildDot(index, bloc.currentPageIndex))),
                   SizedBox(height: 10),
                   CButton(
                     onPressed: () {
@@ -144,7 +142,7 @@ class OnBoardingScreen extends StatelessWidget {
   }
 }
 
-Widget buildDot(int index, int currentIndex, BuildContext context) {
+Widget buildDot(index, currentIndex) {
   // Another Container returned
   return Container(
     height: 5,

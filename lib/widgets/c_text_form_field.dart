@@ -93,7 +93,7 @@ class CTextFormField extends StatelessWidget {
         cursorColor: const Color(0xFF9FD3D0),
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(12),
-          border: OutlineInputBorder(borderSide: BorderSide()),
+          border: const OutlineInputBorder(borderSide: BorderSide()),
           hintText: label,
           prefixIcon: prefix,
           suffixIcon: suffix != null

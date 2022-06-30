@@ -19,6 +19,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context);
     return Scaffold(
       body: CustomScrollView(
         physics: const BouncingScrollPhysics(),
@@ -28,7 +29,7 @@ class LoginScreen extends StatelessWidget {
             primary: true,
             stretch: true,
 
-            expandedHeight: MediaQuery.of(context).size.height * 0.25,
+            expandedHeight: size.size.height * 0.25,
             backgroundColor: const Color(0xFF9FD3D0),
             excludeHeaderSemantics: true,
 
@@ -98,7 +99,7 @@ class LoginScreen extends StatelessWidget {
                             onInit: (value) => countryCode = value!.dialCode,
                             onChanged: (value) => countryCode = value.dialCode,
                           ),
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: size.size.width * 0.95,
                           isMergedToAnotherBox: true,
                           validate: (val) {
                             if (val!.length >= 10) {

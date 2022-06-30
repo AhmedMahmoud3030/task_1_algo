@@ -22,6 +22,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context);
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -37,9 +38,8 @@ class RegisterScreen extends StatelessWidget {
                   floating: false,
                   pinned: true,
                   stretch: true,
-                  collapsedHeight:
-                      (MediaQuery.of(context).size.height * 0.3) / 2 - 10,
-                  expandedHeight: MediaQuery.of(context).size.height * 0.3,
+                  collapsedHeight: (size.size.height * 0.3) / 2 - 10,
+                  expandedHeight: size.size.height * 0.3,
                   backgroundColor: const Color(0xFF9FD3D0),
                   excludeHeaderSemantics: true,
                   automaticallyImplyLeading: false,
@@ -56,9 +56,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                            top:
-                                (MediaQuery.of(context).size.height * 0.3) / 4 -
-                                    5,
+                            top: (size.size.height * 0.3) / 4 - 5,
                             left: 10,
                             child: top <= 120
                                 ? CircleAvatar(
@@ -101,6 +99,7 @@ class RegisterScreen extends StatelessWidget {
             },
             physics: const BouncingScrollPhysics(),
             body: ListView(
+              physics: const BouncingScrollPhysics(),
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -141,7 +140,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: size.size.width * 0.95,
                           child: CTextFormField(
                             validate: (val) {
                               if (val!.contains('@') && val.contains('.com')) {
@@ -170,7 +169,7 @@ class RegisterScreen extends StatelessWidget {
                             onInit: (value) => countryCode = value!.dialCode,
                             onChanged: (value) => countryCode = value.dialCode,
                           ),
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: size.size.width * 0.95,
                           isMergedToAnotherBox: true,
                           validate: (val) {
                             if (val!.length >= 10) {
@@ -191,7 +190,7 @@ class RegisterScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.95,
+                          width: size.size.width * 0.95,
                           child: CTextFormField(
                             validate: (val) {
                               if (val!.length <= 5 && val.contains('_')) {
