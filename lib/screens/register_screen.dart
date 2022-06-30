@@ -144,7 +144,7 @@ class RegisterScreen extends StatelessWidget {
                               if (val!.contains('@') && val.contains('.com')) {
                                 return null;
                               } else {
-                                return 'Please enter valide email';
+                                return 'Please enter valid  email';
                               }
                             },
                             type: TextInputType.emailAddress,
@@ -173,7 +173,7 @@ class RegisterScreen extends StatelessWidget {
                             if (val!.length >= 10) {
                               return null;
                             } else {
-                              return 'Please enter valide phone number';
+                              return 'Please enter valid  phone number';
                             }
                           },
                           type: TextInputType.phone,
@@ -194,7 +194,7 @@ class RegisterScreen extends StatelessWidget {
                               if (val!.length <= 5 && val.contains('_')) {
                                 return null;
                               } else {
-                                return 'Please enter valide Password';
+                                return 'Please enter valid  Password';
                               }
                             },
                             isPassword: cubit.suffixVisibility,

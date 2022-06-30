@@ -103,7 +103,7 @@ class LoginScreen extends StatelessWidget {
                             if (val!.length >= 10) {
                               return null;
                             } else {
-                              return 'Please enter valide phone number';
+                              return 'Please enter valid  phone number';
                             }
                           },
                           suffix: valdeIcon,
