@@ -94,7 +94,6 @@ class CTextFormField extends StatelessWidget {
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(12),
           border: OutlineInputBorder(borderSide: BorderSide()),
-          errorStyle: TextStyle(color: Colors.redAccent),
           hintText: label,
           prefixIcon: prefix,
           suffixIcon: suffix != null

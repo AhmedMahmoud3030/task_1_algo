@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController phoneController = TextEditingController();
   String? countryCode = '';
+  IconData? valdeIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class LoginScreen extends StatelessWidget {
             //collapsedHeight: 100,
             primary: true,
             stretch: true,
+
             expandedHeight: MediaQuery.of(context).size.height * 0.25,
             backgroundColor: const Color(0xFF9FD3D0),
             excludeHeaderSemantics: true,
@@ -105,6 +107,7 @@ class LoginScreen extends StatelessWidget {
                               return 'Please enter valide phone number';
                             }
                           },
+                          suffix: valdeIcon,
                           type: TextInputType.phone,
                           label: 'ex.1026198131',
                           controller: phoneController,
@@ -114,8 +117,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         CButton(
                           onPressed: () {
-                            if (formKey.currentState!.validate()) {}
-                            print(countryCode);
+                            if (formKey.currentState!.validate()) {
+                              valdeIcon = Icons.warning_amber_outlined;
+                            }
                           },
                           btnText: 'Sign In',
                         ),
