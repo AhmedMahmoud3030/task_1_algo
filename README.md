@@ -1,6 +1,6 @@
 # task_1_algo
 
-Algozira Internship.
+Algoriza Internship.
 
 ## Skills
 
