@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:task_1_algo/widgets/c_u_button.dart';
 
 import '../shared/cubit/onboarding_cubit.dart';
-import '../widgets/c_button.dart';
 import '../widgets/c_t_button.dart';
 import 'login_screen.dart';
 import 'register_screen.dart';
@@ -30,7 +30,10 @@ class OnBoardingScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        CButton(
+                        CUButton(
+                          buttonText: 'Skip',
+                          buttonTextColor: Colors.black,
+                          buttonColor: Color(0xfaf2e7dd),
                           onPressed: () {
                             if (bloc.currentPageIndex ==
                                 (bloc.onBoardingPageImages.length - 1)) {
@@ -40,12 +43,8 @@ class OnBoardingScreen extends StatelessWidget {
                               bloc.goToLastPage();
                             }
                           },
-                          width: 80,
-                          radius: 15,
-                          btnText: 'Skip',
-                          textColor: Color(0xFF000000),
-                          btnColor: Color(0xfaf2e7dd),
-                        ),
+                          radius: 25,
+                        )
                       ],
                     ),
                   ),
@@ -110,14 +109,13 @@ class OnBoardingScreen extends StatelessWidget {
                       children: List.generate(bloc.onBoardingPageImages.length,
                           (index) => buildDot(index, bloc.currentPageIndex))),
                   SizedBox(height: 10),
-                  CButton(
+                  CUButton(
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                           context, LoginScreen.routeName);
                     },
-                    btnText: 'Get Started',
-                    btnColor: Color(0xff51afab),
-                    radius: 8,
+                    buttonText: 'Get Started',
+                    buttonColor: Color(0xff51afab),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

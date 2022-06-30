@@ -2,10 +2,8 @@
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:task_1_algo/widgets/c_u_button.dart';
 
-import '../widgets/c_button.dart';
-import '../widgets/c_i_button.dart';
-import '../widgets/c_i_t_button.dart';
 import '../widgets/c_t_button.dart';
 import '../widgets/c_text_form_field.dart';
 import 'register_screen.dart';
@@ -75,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                               style:
                                   TextStyle(fontSize: 30, color: Colors.black),
                             ),
-                            CITButton(
+                            CTButton(
                               btnText: 'Help',
                               iconData: Icons.question_mark,
                               onPressed: () {},
@@ -116,13 +114,15 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        CButton(
+                        CUButton(
+                          buttonColor: Colors.blueAccent,
+                          buttonTextColor: Colors.white,
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               valdeIcon = Icons.warning_amber_outlined;
                             }
                           },
-                          btnText: 'Sign In',
+                          buttonText: 'Sign In',
                         ),
                         const SizedBox(
                           height: 10,
@@ -141,10 +141,14 @@ class LoginScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        CIButton(
+                        CUButton(
+                          isIcon: true,
+                          buttonColor: Colors.white,
+                          borderColor: Colors.blueAccent,
+                          iconAsset: 'assets/images/google.svg',
                           onPressed: () {},
-                          txtColor: Colors.blueAccent,
-                          btnText: 'Sign in by Google',
+                          buttonTextColor: Colors.blueAccent,
+                          buttonText: 'Sign in by Google',
                         ),
                         const SizedBox(
                           height: 10,

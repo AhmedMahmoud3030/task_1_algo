@@ -3,11 +3,9 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_1_algo/widgets/c_u_button.dart';
 
 import '../shared/cubit/auth_cubit.dart';
-import '../widgets/c_button.dart';
-import '../widgets/c_i_button.dart';
-import '../widgets/c_i_t_button.dart';
 import '../widgets/c_t_button.dart';
 import '../widgets/c_text_form_field.dart';
 
@@ -123,7 +121,7 @@ class RegisterScreen extends StatelessWidget {
                               style:
                                   TextStyle(fontSize: 30, color: Colors.black),
                             ),
-                            CITButton(
+                            CTButton(
                               btnText: 'Help',
                               iconData: Icons.question_mark,
                               onPressed: () {},
@@ -154,7 +152,7 @@ class RegisterScreen extends StatelessWidget {
                             label: 'ahmed.elbeah@gmail.com',
                           ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(
                           'Phone Number',
                           style: TextStyle(
@@ -182,7 +180,7 @@ class RegisterScreen extends StatelessWidget {
                           label: 'ex.1026198131',
                           controller: phoneController,
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         Text(
                           'Password',
                           style: TextStyle(
@@ -212,13 +210,13 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        CButton(
+                        CUButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               //!do Sign in
                             }
                           },
-                          btnText: 'Register',
+                          buttonText: 'Register',
                         ),
                         const SizedBox(
                           height: 10,
@@ -237,14 +235,18 @@ class RegisterScreen extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        CIButton(
+                        CUButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
                               //!do Sign in
                             }
                           },
-                          txtColor: Colors.blueAccent,
-                          btnText: 'Sign in by Google',
+                          buttonTextColor: Colors.blueAccent,
+                          buttonText: 'Sign in by Google',
+                          isIcon: true,
+                          iconAsset: 'assets/images/google.svg',
+                          borderColor: Colors.blueAccent,
+                          buttonColor: Colors.white,
                         ),
                         const SizedBox(
                           height: 10,
